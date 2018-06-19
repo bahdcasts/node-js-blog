@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'pages/about.html'))
+  res.render('about')
 })
 
 app.get('/post', (req, res) => {
