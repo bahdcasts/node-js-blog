@@ -3,13 +3,17 @@ const Post = require('./database/models/Post')
 
 mongoose.connect('mongodb://localhost/node-js-test-blog')
 
-// Post.find({}, (error, posts) => {
-//   console.log(error, posts)
+Post.find({}, (error, posts) => {
+  console.log(error, posts)
+})
+
+// Post.findById("5b309ceca84e99bbb6601904", (error, post) => {
+//   console.log(error, post)
 // })
 
-Post.findById("5b309ceca84e99bbb6601904", (error, post) => {
-  console.log(error, post)
-})
+// Post.findByIdAndRemove("5b309ceca84e99bbb6601904", (error) => {
+//   console.log(error)
+// })
 
 // Post.create({
 //   title: 'My second blog post',
