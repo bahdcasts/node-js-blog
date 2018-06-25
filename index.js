@@ -4,6 +4,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
+const Post = require('./database/models/Post')
+
 const app = new express()
 
 mongoose.connect('mongodb://localhost/node-js-blog')
@@ -24,8 +26,9 @@ app.get('/posts/new', (req, res) => {
 })
 
 app.post('/posts/store', (req, res) => {
-  console.log(req.body)
-  res.redirect('/')
+  Post.create(req.body, (error, post) => {
+    res.redirect('/')
+  })
 })
 
 app.get('/about', (req, res) => {
