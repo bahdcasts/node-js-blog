@@ -36,13 +36,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const storePost = require("./middleware/storePost");
-
-app.use("/posts/store", storePost);
+const auth = require("./middleware/auth");
 
 app.get("/", homePageController);
 app.get("/post/:id", getPostController);
-app.get("/posts/new", createPostController);
-app.post("/posts/store", storePostController);
+app.get("/posts/new", auth, createPostController);
+app.post("/posts/store", auth, storePost, storePostController);
 app.get('/auth/login', loginController);
 app.post('/users/login', loginUserController)
 app.get("/auth/register", createUserController);
