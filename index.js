@@ -42,15 +42,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const storePost = require("./middleware/storePost");
 const auth = require("./middleware/auth");
+const redirectIfAuthenticated = require('./middleware/redirectIfAuthenticated')
 
 app.get("/", homePageController);
 app.get("/post/:id", getPostController);
 app.get("/posts/new", auth, createPostController);
 app.post("/posts/store", auth, storePost, storePostController);
-app.get("/auth/login", loginController);
-app.post("/users/login", loginUserController);
-app.get("/auth/register", createUserController);
-app.post("/users/register", storeUserController);
+app.get("/auth/login", redirectIfAuthenticated, loginController);
+app.post("/users/login", redirectIfAuthenticated, loginUserController);
+app.get("/auth/register", redirectIfAuthenticated, createUserController);
+app.post("/users/register", redirectIfAuthenticated, storeUserController);
 
 app.listen(4000, () => {
   console.log("App listening on port 4000");
