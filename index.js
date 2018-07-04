@@ -16,6 +16,7 @@ const createUserController = require("./controllers/createUser");
 const storeUserController = require("./controllers/storeUser");
 const loginController = require("./controllers/login");
 const loginUserController = require("./controllers/loginUser");
+const logoutController = require("./controllers/logout");
 
 const app = new express();
 mongoose.connect("mongodb://localhost/node-js-blog");
@@ -38,10 +39,10 @@ app.use(express.static("public"));
 app.use(expressEdge);
 app.set("views", `${__dirname}/views`);
 
-app.use('*', (req, res, next) => {
-  edge.global('auth', req.session.userId)
-  next()
-})
+app.use("*", (req, res, next) => {
+  edge.global("auth", req.session.userId);
+  next();
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -53,6 +54,7 @@ const redirectIfAuthenticated = require("./middleware/redirectIfAuthenticated");
 app.get("/", homePageController);
 app.get("/post/:id", getPostController);
 app.get("/posts/new", auth, createPostController);
+app.get("/auth/logout", redirectIfAuthenticated, logoutController);
 app.post("/posts/store", auth, storePost, storePostController);
 app.get("/auth/login", redirectIfAuthenticated, loginController);
 app.post("/users/login", redirectIfAuthenticated, loginUserController);
