@@ -11,7 +11,7 @@
               <h1>{{ post.title }}</h1>
               <h2 class="subheading">{{ post.subtitle }}</h2>
               <span class="meta">Posted by
-                <a href="#">{{ post.username }}</a>
+                <a href="#">{{ post.author.username }}</a>
                 on {{ post.createdAt.toDateString() }}</span>
             </div>
           </div>
