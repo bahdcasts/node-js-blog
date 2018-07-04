@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
+const expressSession = require('express-session');
 
 const createPostController = require("./controllers/createPost");
 const homePageController = require("./controllers/homePage");
@@ -14,6 +15,10 @@ const loginController = require("./controllers/login");
 const loginUserController = require('./controllers/loginUser')
 
 const app = new express();
+
+app.use(expressSession({
+  secret: 'secret'
+}))
 
 mongoose.connect("mongodb://localhost/node-js-blog");
 
