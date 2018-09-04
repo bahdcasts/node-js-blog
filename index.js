@@ -1,6 +1,7 @@
 const expressEdge = require("express-edge");
 const express = require("express");
 const edge = require("edge.js");
+const cloudinary = require('cloudinary');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
@@ -22,6 +23,12 @@ const app = new express();
 mongoose.connect("mongodb://localhost/node-js-blog");
 
 app.use(connectFlash());
+
+cloudinary.config({
+  api_key: '132255634713478',
+  api_secret: 'aeBNzdZFcju9ZEAiL7KsEMbBlFI',
+  cloud_name: 'bahdcoder',
+});
 
 const mongoStore = connectMongo(expressSession);
 
