@@ -53,13 +53,14 @@ const redirectIfAuthenticated = require("./middleware/redirectIfAuthenticated");
 
 app.get("/", homePageController);
 app.get("/post/:id", getPostController);
+app.get("/auth/logout", auth, logoutController);
 app.get("/posts/new", auth, createPostController);
-app.get("/auth/logout", redirectIfAuthenticated, logoutController);
 app.post("/posts/store", auth, storePost, storePostController);
 app.get("/auth/login", redirectIfAuthenticated, loginController);
 app.post("/users/login", redirectIfAuthenticated, loginUserController);
 app.get("/auth/register", redirectIfAuthenticated, createUserController);
 app.post("/users/register", redirectIfAuthenticated, storeUserController);
+app.use((req, res) => res.render('not-found'));
 
 app.listen(4000, () => {
   console.log("App listening on port 4000");
