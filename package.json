@@ -15,6 +15,7 @@
     "cloudinary": "^1.11.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.1",
+    "dotenv": "^6.0.0",
     "edge.js": "^1.1.4",
     "express": "^4.16.3",
     "express-edge": "^1.0.0",

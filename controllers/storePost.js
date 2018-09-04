@@ -17,7 +17,6 @@ module.exports = (req, res) => {
         image: result.secure_url,
         author: req.session.userId
       }, (error, post) => {
-        console.log(post);
         res.redirect("/");
       });
     });
